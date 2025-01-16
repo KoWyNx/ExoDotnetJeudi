@@ -1,43 +1,47 @@
-@model List<TP_CAISSE.ViewModel.ProductViewModel>
+@model IEnumerable<TP_CAISSE.ViewModel.ProductViewModel>
 
 @{
-    ViewData["Title"] = "All Products";
+    ViewData["Title"] = "Liste des produits";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 
-@if (Model.Any())
+<p>
+    <a href="@Url.Action("AddProduct", "Product")" class="btn btn-primary">Ajouter un produit</a>
+</p>
+
+@if (!Model.Any())
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Stock</th>
-            <th>Prix</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var product in Model)
-        {
-            <tr>
-                <td>@product.Name</td>
-                <td>@product.Description</td>
-                <td>@product.Stock</td>
-                <td>@product.Price</td>
-                <td>
-                    <a href="@Url.Action("GetProduct", new { id = product.Primarikey })" class="btn btn-info">Voir</a>
-                    <a href="@Url.Action("EditProduct", new { id = product.Primarikey })" class="btn btn-warning">Edit</a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    <p>Aucun produit trouvé.</p>
 }
 else
 {
-    <p>Pas de produit.</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Stock</th>
+                <th>Catégorie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price</td>
+                    <td>@product.Stock</td>
+                    <td>@product.CategoryName</td> 
+                    <td>
+                        <a href="@Url.Action("GetProduct", "Product", new { id = product.PrimaryKey })" class="btn btn-info">Voir</a>
+                        <a href="@Url.Action("EditProduct", "Product", new { id = product.PrimaryKey })" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-
-<a href="@Url.Action("AddProduct")" class="btn btn-primary">Ajout produit</a>

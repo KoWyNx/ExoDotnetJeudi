@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TP_CAISSE.Context;
 using TP_CAISSE.DTL;
+using TP_CAISSE.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,10 @@ builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection"));
 });
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ProductDTL>();
 builder.Services.AddScoped<CategorieDTL>();
+builder.Services.AddScoped<ProductSvc>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

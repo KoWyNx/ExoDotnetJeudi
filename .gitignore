@@ -1,0 +1,111 @@
+# Fichiers générés par Visual Studio
+.vs/
+.vscode/
+.idea/
+
+# Fichiers binaires et build
+bin/
+obj/
+out/
+*.dll
+*.pdb
+*.exe
+*.app
+*.dmg
+*.pkg
+*.so
+*.deb
+*.o
+*.a
+
+# Fichiers de dépendances et build système
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# Logs et autres fichiers temporaires
+*.log
+*.temp
+*.tmp
+
+# Fichiers spécifiques aux OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Fichiers de configuration utilisateur
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.ncrunchsolution
+*.localhistory/
+
+# Fichiers de configuration de Visual Studio
+*.vspx
+*.vspxproj
+*.dbmdl
+*.pfx
+*.publishsettings
+*.sln.docstates
+
+# Fichiers temporaires de package manager
+*.nuget
+*.npm/
+node_modules/
+package-lock.json
+yarn.lock
+*.env
+
+# Build et dépendances .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.csproj.user
+*.sqlproj.user
+*.vbproj.user
+*.csproj.nuget.dgspec.json
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+
+# Dossiers temporaires et caches
+Backup/
+TestResults/
+.vs/
+_ReSharper.*
+**/Coverage/
+*.coverage
+*.coveragexml
+*.coveragejson
+*.opencover
+*.testlog
+*.trx
+
+# Logs d'IDE ou compilateurs
+*.log
+*.tlog
+*.ide.log
+*.netlog
+
+# Extensions spécifiques aux tests
+TestResults/
+
+# Fichiers secrets et sensibles
+secrets.json
+.env
+
+# Fichiers générés pour l'outillage Docker
+docker-compose.override.yml
+*.dockerignore
+
+# Pour le développement local ou services tiers
+local.settings.json
+hostingstart.html
+appsettings.Development.json
+
+# Autres fichiers inutiles
+dist/
+publish/

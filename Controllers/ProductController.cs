@@ -1,76 +1,120 @@
 using Microsoft.AspNetCore.Mvc;
-using TP_CAISSE.DTL;
-using TP_CAISSE.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TP_CAISSE.DTL;
+using TP_CAISSE.Models;
+using TP_CAISSE.Services;
+using TP_CAISSE.ViewModel;
 
 namespace TP_CAISSE.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductDTL _productDTL;
+        private readonly ProductSvc _productSvc;
+        private readonly CategorieDTL _categorieDTL;
 
-        public ProductController(ProductDTL productDTL)
+        public ProductController(ProductSvc productSvc, CategorieDTL categorieDTL)
         {
-            _productDTL = productDTL;  
+            _productSvc = productSvc;
+            _categorieDTL = categorieDTL;
         }
 
         public async Task<IActionResult> GetAllProducts()
         {
-            var products = await _productDTL.GetAllProducts();
-            if (products == null || !products.Any())
-            {
-                return NotFound();
-            }
+            var products = await _productSvc.GetAllProducts(); 
+
             return View(products);
         }
 
+
         public async Task<IActionResult> GetProduct(Guid id)
         {
-            var product = await _productDTL.GetByIdAsync(id);
+            var product = await _productSvc.GetProductById(id);
             if (product == null)
             {
-                return NotFound();
+                return NotFound("Produit introuvable.");
             }
             return View(product);
         }
 
-        public IActionResult AddProduct()
+        public async Task<IActionResult> AddProduct()
         {
-            return View(new Product());
+            var categories = await _categorieDTL.GetAllCategories(); 
+
+            ViewBag.Categories = new SelectList(categories, "Primarikey", "Name"); 
+
+            return View(new ProductViewModel());
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(Product product)
+        public async Task<IActionResult> AddProduct(ProductViewModel product, Guid categoryId)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _productDTL.AddAsync(product);
+                var categories = await _categorieDTL.GetAllCategories();
+                ViewBag.Categories = new SelectList(categories, "Primarikey", "Name");
+                return View(product);
+            }
+
+            try
+            {
+                await _productSvc.AddProduct(product, categoryId);
                 return RedirectToAction("GetAllProducts");
             }
-            return View(product);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                var categories = await _categorieDTL.GetAllCategories();
+                ViewBag.Categories = new SelectList(categories, "Primarikey", "Name");
+                return View(product);
+            }
         }
+
+
+
 
         public async Task<IActionResult> EditProduct(Guid id)
         {
-            var product = await _productDTL.GetByIdAsync(id);
-            if (product == null)
+            var productViewModel = await _productSvc.GetProductById(id);
+
+            if (productViewModel == null)
             {
-                return NotFound();
+                return NotFound("Produit introuvable.");
             }
-            return View(product);
+
+            var categories = await _categorieDTL.GetAllCategories();
+
+            ViewBag.Categories = new SelectList(categories, "Primarikey", "Name", productViewModel.CategoryId);
+
+            return View(productViewModel); 
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProduct(Product product)
+        public async Task<IActionResult> EditProduct(ProductViewModel product, Guid categoryId)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _productDTL.UpdateAsync(product);
+                var categories = await _categorieDTL.GetAllCategories();
+                ViewBag.Categories = new SelectList(categories, "Primarikey", "Name", categoryId); 
+                return View(product);
+            }
+
+            try
+            {
+                await _productSvc.UpdateProduct(product, categoryId);
                 return RedirectToAction("GetAllProducts");
             }
-            return View(product);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+
+                var categories = await _categorieDTL.GetAllCategories();
+                ViewBag.Categories = new SelectList(categories, "Primarikey", "Name", categoryId);
+                return View(product);
+            }
         }
     }
 }

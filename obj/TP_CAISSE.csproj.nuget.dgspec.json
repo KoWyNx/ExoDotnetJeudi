@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/Fares/Desktop/Dev/TP_CAISSE/TP_CAISSE/TP_CAISSE.csproj": {}
+    "G:\\Dev\\ExoDotnetJeudi\\TP_CAISSE.csproj": {}
   },
   "projects": {
-    "/Users/Fares/Desktop/Dev/TP_CAISSE/TP_CAISSE/TP_CAISSE.csproj": {
+    "G:\\Dev\\ExoDotnetJeudi\\TP_CAISSE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Fares/Desktop/Dev/TP_CAISSE/TP_CAISSE/TP_CAISSE.csproj",
+        "projectUniqueName": "G:\\Dev\\ExoDotnetJeudi\\TP_CAISSE.csproj",
         "projectName": "TP_CAISSE",
-        "projectPath": "/Users/Fares/Desktop/Dev/TP_CAISSE/TP_CAISSE/TP_CAISSE.csproj",
-        "packagesPath": "/Users/Fares/.nuget/packages/",
-        "outputPath": "/Users/Fares/Desktop/Dev/TP_CAISSE/TP_CAISSE/obj/",
+        "projectPath": "G:\\Dev\\ExoDotnetJeudi\\TP_CAISSE.csproj",
+        "packagesPath": "C:\\Users\\Fares\\.nuget\\packages\\",
+        "outputPath": "G:\\Dev\\ExoDotnetJeudi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/Fares/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Fares\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -78,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -19,8 +19,9 @@ namespace TP_CAISSE.DTL
 
         public async Task<List<Categorie>> GetAllCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories.ToListAsync(); 
         }
+
 
         public async Task<Categorie> GetCategoryById(Guid id)
         {
@@ -29,6 +30,16 @@ namespace TP_CAISSE.DTL
                 .FirstOrDefaultAsync(c => c.Primarikey == id);
         }
 
+
+
+        public async Task<List<Product>> GetProductsByCategorie(Guid categoryId)
+        {
+            var category = await _context.Categories
+                .Include(c => c.FkProducts)
+                .FirstOrDefaultAsync(c => c.Primarikey == categoryId);
+
+            return category?.FkProducts.ToList() ?? new List<Product>();
+        }
         public async Task AddCategory(Categorie categorie)
         {
             await _context.Categories.AddAsync(categorie);

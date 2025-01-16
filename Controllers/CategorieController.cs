@@ -26,7 +26,12 @@ namespace TP_CAISSE.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var categorie = new Categorie()
+            {
+
+            };
+
+            return View(categorie);
         }
 
         [HttpPost]

@@ -17,15 +17,25 @@ namespace TP_CAISSE.DTL
         public async Task<List<ProductViewModel>> GetAllProducts()
         {
             return await Context.Products
+                .Include(p => p.FkCategories) 
                 .Select(m => new ProductViewModel(m))
                 .ToListAsync();
         }
 
-        public async Task<Product?> GetByIdAsync(Guid id)
+        public async Task<ProductViewModel?> GetByIdAsync(Guid id)
         {
             return await Context.Products
-                .FirstOrDefaultAsync(product => product.Primarikey == id);  
+                .Where(product => product.Primarikey == id)
+                .Select(product => new ProductViewModel(product)) 
+                .FirstOrDefaultAsync(); 
         }
+        public async Task<Product?> GetProductWithCategoriesAsync(Guid id)
+        {
+            return await Context.Products
+                .Include(p => p.FkCategories) 
+                .FirstOrDefaultAsync(p => p.Primarikey == id);
+        }
+
 
         public async Task AddAsync(Product product)
         {
