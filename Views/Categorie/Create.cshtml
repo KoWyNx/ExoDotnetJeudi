@@ -1,0 +1,10 @@
+@model TP_CAISSE.Models.Categorie
+
+<h2>Ajouter une catégorie</h2>
+
+<form method="post">
+    <label for="Name">Nom</label>
+    <input type="text" id="Name" name="Name" value="@Model.Name" required />
+    
+    <button type="submit">Ajouter</button>
+</form>

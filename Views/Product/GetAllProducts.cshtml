@@ -1,0 +1,43 @@
+@model List<TP_CAISSE.ViewModel.ProductViewModel>
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Prix</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Stock</td>
+                <td>@product.Price</td>
+                <td>
+                    <a href="@Url.Action("GetProduct", new { id = product.Primarikey })" class="btn btn-info">Voir</a>
+                    <a href="@Url.Action("EditProduct", new { id = product.Primarikey })" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Pas de produit.</p>
+}
+
+<a href="@Url.Action("AddProduct")" class="btn btn-primary">Ajout produit</a>

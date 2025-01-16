@@ -1,0 +1,16 @@
+@model TP_CAISSE.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>@Model.Name</h3>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <p><strong>Priw:</strong> @Model.Price</p>
+    <p><strong>Stock:</strong> @Model.Stock</p>
+</div>
+
+<a href="@Url.Action("GetAllProducts")" class="btn btn-primary">Retour</a>

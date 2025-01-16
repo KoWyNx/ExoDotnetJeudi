@@ -1,0 +1,29 @@
+@model TP_CAISSE.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="EditProduct" method="post">
+    <div class="form-group">
+        <label for="Name">Nom</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" required />
+    </div>
+    <div class="form-group">
+        <label for="Price">Prix</label>
+        <input type="number" class="form-control" id="Price" name="Price" value="@Model.Price" required />
+    </div>
+    <div class="form-group">
+        <label for="Stock">Stock</label>
+        <input type="number" class="form-control" id="Stock" name="Stock" value="@Model.Stock" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+</form>
+
+<a href="@Url.Action("GetAllProducts")" class="btn btn-secondary">Annuler</a>
